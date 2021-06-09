@@ -26,26 +26,41 @@ public class Category implements Serializable{
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getSubtitle() {
         return subtitle;
     }
+
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
     }
+
     public String getImg() {
         return img;
     }
+
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Collection<Food> getFood() {
+        return food;
+    }
+
+    public void setFood(Collection<Food> food) {
+        this.food = food;
     }
 
     @Override
@@ -56,13 +71,5 @@ public class Category implements Serializable{
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 '}';
-    }
-
-    public Collection<Food> getFood() {
-        return food;
-    }
-
-    public void setFood(Collection<Food> food) {
-        this.food = food;
     }
 }

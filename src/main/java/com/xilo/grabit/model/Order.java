@@ -34,6 +34,7 @@ public class Order implements Serializable {
         this.subTotal = subTotal;
         this.transactionId = transactionId;
     }
+
     public Long getId() {
         return id;
     }
