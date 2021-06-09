@@ -70,6 +70,7 @@ public class Category implements Serializable{
                 ", img='" + img + '\'' +
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
+                ", food=" + food +
                 '}';
     }
 }

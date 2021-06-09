@@ -116,6 +116,7 @@ public class Food implements Serializable{
                 ", available=" + available +
                 ", description='" + description + '\'' +
                 ", category=" + category +
+                ", orderCollection=" + orderCollection +
                 '}';
     }
 }

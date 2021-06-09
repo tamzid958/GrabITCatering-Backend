@@ -136,6 +136,7 @@ public class Order implements Serializable {
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", subTotal=" + subTotal +
                 ", transactionId='" + transactionId + '\'' +
+                ", orderCollection=" + orderCollection +
                 '}';
     }
 }

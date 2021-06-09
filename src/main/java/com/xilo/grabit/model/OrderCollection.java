@@ -4,20 +4,16 @@ import java.io.Serializable;
 
 @Entity
 public class OrderCollection implements Serializable{
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
-
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "food_id", referencedColumnName = "id")
     private Food food;
-
     private int quantity;
 
     public OrderCollection(){}
@@ -58,5 +54,15 @@ public class OrderCollection implements Serializable{
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderCollection{" +
+                "id=" + id +
+                ", order=" + order +
+                ", food=" + food +
+                ", quantity=" + quantity +
+                '}';
     }
 }
