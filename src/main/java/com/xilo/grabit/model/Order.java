@@ -23,7 +23,7 @@ public class Order implements Serializable {
 
     public Order(){}
 
-    public Order(String firstName, String lastName, String companyName, String streetAddress, String phone, String notes, String paymentMethod, double subTotal, String transactionId) {
+    public Order(String firstName, String lastName, String companyName, String streetAddress, String phone, String notes, String paymentMethod, double subTotal, String transactionId, Collection<OrderCollection> orderCollection) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyName = companyName;
@@ -33,6 +33,7 @@ public class Order implements Serializable {
         this.paymentMethod = paymentMethod;
         this.subTotal = subTotal;
         this.transactionId = transactionId;
+        this.orderCollection = orderCollection;
     }
 
     public Long getId() {

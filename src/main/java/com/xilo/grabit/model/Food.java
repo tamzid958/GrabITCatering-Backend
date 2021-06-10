@@ -23,7 +23,7 @@ public class Food implements Serializable{
 
     public Food(){}
 
-    public Food(String img, String title, double price, int avgReview, boolean available, String description, Category category) {
+    public Food(String img, String title, double price, int avgReview, boolean available, String description, Category category, Collection<OrderCollection> orderCollection) {
         this.img = img;
         this.title = title;
         this.price = price;
@@ -31,6 +31,7 @@ public class Food implements Serializable{
         this.available = available;
         this.description = description;
         this.category = category;
+        this.orderCollection = orderCollection;
     }
 
     public void setId(Long id) {

@@ -17,10 +17,11 @@ public class Category implements Serializable{
 
     public Category(){}
 
-    public Category(String img, String title, String subtitle){
+    public Category(String img, String title, String subtitle, Collection<Food> food) {
         this.img = img;
         this.title = title;
         this.subtitle = subtitle;
+        this.food = food;
     }
 
     public Long getId() {
