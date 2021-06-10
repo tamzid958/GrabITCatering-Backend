@@ -9,10 +9,8 @@ public class OrderCollection implements Serializable{
     @Column(nullable = false, updatable = false)
     private Long id;
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "food_id", referencedColumnName = "id")
     private Food food;
     private int quantity;
 

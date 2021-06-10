@@ -1,7 +1,7 @@
 package com.xilo.grabit.model;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.*;
 
 @Entity
 public class Food implements Serializable{
@@ -16,7 +16,6 @@ public class Food implements Serializable{
     private boolean available;
     private String description;
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
     @OneToMany(mappedBy = "food")
     private Collection<OrderCollection> orderCollection;
