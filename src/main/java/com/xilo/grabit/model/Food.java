@@ -1,7 +1,7 @@
 package com.xilo.grabit.model;
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.*;
 
 @Entity
 public class Food implements Serializable{
