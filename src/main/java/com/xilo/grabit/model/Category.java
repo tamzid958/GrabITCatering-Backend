@@ -1,14 +1,12 @@
 package com.xilo.grabit.model;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-public class Category implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private Long id;
+public class Category extends AbstractPersistable<Long> implements Serializable{
     private String img;
     private String title;
     private String subtitle;
@@ -22,14 +20,6 @@ public class Category implements Serializable{
         this.title = title;
         this.subtitle = subtitle;
         this.food = food;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -67,7 +57,6 @@ public class Category implements Serializable{
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + id +
                 ", img='" + img + '\'' +
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +

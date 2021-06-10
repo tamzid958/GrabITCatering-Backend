@@ -1,14 +1,12 @@
 package com.xilo.grabit.model;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-public class Order implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private Long id;
+public class Order extends AbstractPersistable<Long> implements Serializable {
     private String firstName;
     private String lastName;
     private String companyName;
@@ -34,14 +32,6 @@ public class Order implements Serializable {
         this.subTotal = subTotal;
         this.transactionId = transactionId;
         this.orderCollection = orderCollection;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -127,7 +117,6 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", companyName='" + companyName + '\'' +
