@@ -1,12 +1,13 @@
 package com.xilo.grabit.model;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-public class Category extends AbstractPersistable<Long> implements Serializable{
+public abstract class Category implements Serializable{
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String img;
     private String title;
     private String subtitle;
@@ -15,11 +16,18 @@ public class Category extends AbstractPersistable<Long> implements Serializable{
 
     public Category(){}
 
-    public Category(String img, String title, String subtitle, Collection<Food> food) {
+    public Category(String img, String title, String subtitle) {
         this.img = img;
         this.title = title;
         this.subtitle = subtitle;
-        this.food = food;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -57,10 +65,24 @@ public class Category extends AbstractPersistable<Long> implements Serializable{
     @Override
     public String toString() {
         return "Category{" +
+                "id=" + id +
                 ", img='" + img + '\'' +
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", food=" + food +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object c) {
+        if (this == c) return true;
+        if (!(c instanceof Category that)) return false;
+
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 }

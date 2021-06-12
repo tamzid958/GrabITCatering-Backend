@@ -1,12 +1,13 @@
 package com.xilo.grabit.model;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-public class Order extends AbstractPersistable<Long> implements Serializable {
+public abstract class Order implements Serializable {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
     private String companyName;
@@ -21,7 +22,7 @@ public class Order extends AbstractPersistable<Long> implements Serializable {
 
     public Order(){}
 
-    public Order(String firstName, String lastName, String companyName, String streetAddress, String phone, String notes, String paymentMethod, double subTotal, String transactionId, Collection<OrderCollection> orderCollection) {
+    public Order(String firstName, String lastName, String companyName, String streetAddress, String phone, String notes, String paymentMethod, double subTotal, String transactionId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyName = companyName;
@@ -31,7 +32,14 @@ public class Order extends AbstractPersistable<Long> implements Serializable {
         this.paymentMethod = paymentMethod;
         this.subTotal = subTotal;
         this.transactionId = transactionId;
-        this.orderCollection = orderCollection;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -117,6 +125,7 @@ public class Order extends AbstractPersistable<Long> implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", companyName='" + companyName + '\'' +
@@ -128,5 +137,18 @@ public class Order extends AbstractPersistable<Long> implements Serializable {
                 ", transactionId='" + transactionId + '\'' +
                 ", orderCollection=" + orderCollection +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order that)) return false;
+
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 }

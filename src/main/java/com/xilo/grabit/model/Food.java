@@ -1,11 +1,13 @@
 package com.xilo.grabit.model;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-public class Food extends AbstractPersistable<Long> implements Serializable{
+public abstract class Food implements Serializable{
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String img;
     private String title;
     private double price;
@@ -19,7 +21,7 @@ public class Food extends AbstractPersistable<Long> implements Serializable{
 
     public Food(){}
 
-    public Food(String img, String title, double price, int avgReview, boolean available, String description, Category category, Collection<OrderCollection> orderCollection) {
+    public Food(String img, String title, double price, int avgReview, boolean available, String description, Category category) {
         this.img = img;
         this.title = title;
         this.price = price;
@@ -27,7 +29,14 @@ public class Food extends AbstractPersistable<Long> implements Serializable{
         this.available = available;
         this.description = description;
         this.category = category;
-        this.orderCollection = orderCollection;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getImg() {
@@ -97,6 +106,7 @@ public class Food extends AbstractPersistable<Long> implements Serializable{
     @Override
     public String toString() {
         return "Food{" +
+                "id=" + id +
                 ", img='" + img + '\'' +
                 ", title='" + title + '\'' +
                 ", price=" + price +
@@ -106,5 +116,18 @@ public class Food extends AbstractPersistable<Long> implements Serializable{
                 ", category=" + category +
                 ", orderCollection=" + orderCollection +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object f) {
+        if (this == f) return true;
+        if (!(f instanceof Food that)) return false;
+
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 }
