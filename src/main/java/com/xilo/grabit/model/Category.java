@@ -1,7 +1,7 @@
 package com.xilo.grabit.model;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,8 +13,9 @@ public abstract class Category implements Serializable{
     private String img;
     private String title;
     private String subtitle;
-    @OneToMany
-    private Set<Food> foods;
+    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Set<Food> foods = new HashSet<>();
 
     public Category(){}
 

@@ -1,7 +1,8 @@
 package com.xilo.grabit.model;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -18,8 +19,9 @@ public abstract class Order implements Serializable {
     private String paymentMethod;
     private double subTotal;
     private String transactionId;
-    @OneToMany
-    private Collection<OrderCollection> orderCollections;
+    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Set<OrderCollection> orderCollections = new HashSet<>();
 
     public Order(){}
 
@@ -115,11 +117,11 @@ public abstract class Order implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public Collection<OrderCollection> getOrderCollections() {
+    public Set<OrderCollection> getOrderCollections() {
         return orderCollections;
     }
 
-    public void setOrderCollections(Collection<OrderCollection> orderCollections) {
+    public void setOrderCollections(Set<OrderCollection> orderCollections) {
         this.orderCollections = orderCollections;
     }
 
