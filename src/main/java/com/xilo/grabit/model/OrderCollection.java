@@ -3,15 +3,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "orderCollections")
+@Table(name = "order_collections")
 public abstract class OrderCollection implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private int quantity;
     @ManyToOne
+    @JoinColumn
     private Order order;
     @ManyToOne
+    @JoinColumn
     private Food food;
 
     public OrderCollection(){}

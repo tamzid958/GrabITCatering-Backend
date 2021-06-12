@@ -17,9 +17,9 @@ public abstract class Food implements Serializable{
     private boolean available;
     private String description;
     @ManyToOne
+    @JoinColumn
     private Category category;
     @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
     private Set<OrderCollection> orderCollections = new HashSet<>();
 
     public Food(){}

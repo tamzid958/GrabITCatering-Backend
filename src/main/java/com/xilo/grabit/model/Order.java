@@ -20,7 +20,6 @@ public abstract class Order implements Serializable {
     private double subTotal;
     private String transactionId;
     @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
     private Set<OrderCollection> orderCollections = new HashSet<>();
 
     public Order(){}

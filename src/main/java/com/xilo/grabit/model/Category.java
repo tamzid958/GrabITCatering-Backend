@@ -14,7 +14,6 @@ public abstract class Category implements Serializable{
     private String title;
     private String subtitle;
     @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
     private Set<Food> foods = new HashSet<>();
 
     public Category(){}
