@@ -3,7 +3,7 @@ import com.xilo.grabit.respository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public abstract class OrderService {
+public class OrderService {
     private final OrderRepository orderRepository;
 
     public OrderService(OrderRepository orderRepository) {
