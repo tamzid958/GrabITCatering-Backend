@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FoodService {
+public abstract class FoodService {
     private final FoodRepository foodRepository;
 
     @Autowired
