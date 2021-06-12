@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
+@Table(name = "orders")
 public abstract class Order implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -17,8 +18,8 @@ public abstract class Order implements Serializable {
     private String paymentMethod;
     private double subTotal;
     private String transactionId;
-    @OneToMany(mappedBy = "order")
-    private Collection<OrderCollection> orderCollection;
+    @OneToMany
+    private Collection<OrderCollection> orderCollections;
 
     public Order(){}
 
@@ -114,12 +115,12 @@ public abstract class Order implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public Collection<OrderCollection> getOrderCollection() {
-        return orderCollection;
+    public Collection<OrderCollection> getOrderCollections() {
+        return orderCollections;
     }
 
-    public void setOrderCollection(Collection<OrderCollection> orderCollection) {
-        this.orderCollection = orderCollection;
+    public void setOrderCollections(Collection<OrderCollection> orderCollections) {
+        this.orderCollections = orderCollections;
     }
 
     @Override
@@ -135,16 +136,17 @@ public abstract class Order implements Serializable {
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", subTotal=" + subTotal +
                 ", transactionId='" + transactionId + '\'' +
-                ", orderCollection=" + orderCollection +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Order that)) return false;
+        if (!(o instanceof Order)) return false;
 
-        return getId().equals(that.getId());
+        Order order = (Order) o;
+
+        return getId().equals(order.getId());
     }
 
     @Override

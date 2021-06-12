@@ -3,21 +3,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "orderCollections")
 public abstract class OrderCollection implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    private Order order;
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    private Food food;
     private int quantity;
+    @ManyToOne
+    private Order order;
+    @ManyToOne
+    private Food food;
 
     public OrderCollection(){}
 
-    public OrderCollection(Order order, Food food, int quantity) {
-        this.order = order;
-        this.food = food;
+    public OrderCollection(int quantity) {
         this.quantity = quantity;
     }
 
@@ -57,8 +56,6 @@ public abstract class OrderCollection implements Serializable{
     public String toString() {
         return "OrderCollection{" +
                 "id=" + id +
-                ", order=" + order +
-                ", food=" + food +
                 ", quantity=" + quantity +
                 '}';
     }
@@ -66,9 +63,11 @@ public abstract class OrderCollection implements Serializable{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OrderCollection that)) return false;
+        if (!(o instanceof OrderCollection)) return false;
 
-        return getId().equals(that.getId());
+        OrderCollection orderCollection = (OrderCollection) o;
+
+        return getId().equals(orderCollection.getId());
     }
 
     @Override

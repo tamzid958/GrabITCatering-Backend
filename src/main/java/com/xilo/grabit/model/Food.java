@@ -1,9 +1,11 @@
 package com.xilo.grabit.model;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 @Entity
+@Table(name = "foods")
 public abstract class Food implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -14,21 +16,20 @@ public abstract class Food implements Serializable{
     private int avgReview;
     private boolean available;
     private String description;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "food")
-    private Collection<OrderCollection> orderCollection;
+    @OneToMany
+    private Set<OrderCollection> orderCollections;
 
     public Food(){}
 
-    public Food(String img, String title, double price, int avgReview, boolean available, String description, Category category) {
+    public Food(String img, String title, double price, int avgReview, boolean available, String description) {
         this.img = img;
         this.title = title;
         this.price = price;
         this.avgReview = avgReview;
         this.available = available;
         this.description = description;
-        this.category = category;
     }
 
     public void setId(Long id) {
@@ -95,12 +96,12 @@ public abstract class Food implements Serializable{
         this.category = category;
     }
 
-    public Collection<OrderCollection> getOrderCollection() {
-        return orderCollection;
+    public Set<OrderCollection> getOrderCollections() {
+        return orderCollections;
     }
 
-    public void setOrderCollection(Collection<OrderCollection> orderCollection) {
-        this.orderCollection = orderCollection;
+    public void setOrderCollections(Set<OrderCollection> orderCollections) {
+        this.orderCollections = orderCollections;
     }
 
     @Override
@@ -113,17 +114,17 @@ public abstract class Food implements Serializable{
                 ", avgReview=" + avgReview +
                 ", available=" + available +
                 ", description='" + description + '\'' +
-                ", category=" + category +
-                ", orderCollection=" + orderCollection +
                 '}';
     }
 
     @Override
-    public boolean equals(Object f) {
-        if (this == f) return true;
-        if (!(f instanceof Food that)) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Food)) return false;
 
-        return getId().equals(that.getId());
+        Food food = (Food) o;
+
+        return getId().equals(food.getId());
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.xilo.grabit.model;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 @Entity
+@Table(name = "categories")
 public abstract class Category implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -11,8 +13,8 @@ public abstract class Category implements Serializable{
     private String img;
     private String title;
     private String subtitle;
-    @OneToMany(mappedBy = "category")
-    private Collection<Food> food;
+    @OneToMany
+    private Set<Food> foods;
 
     public Category(){}
 
@@ -54,12 +56,12 @@ public abstract class Category implements Serializable{
         this.img = img;
     }
 
-    public Collection<Food> getFood() {
-        return food;
+    public Set<Food> getFoods() {
+        return foods;
     }
 
-    public void setFood(Collection<Food> food) {
-        this.food = food;
+    public void setFoods(Set<Food> foods) {
+        this.foods = foods;
     }
 
     @Override
@@ -69,16 +71,17 @@ public abstract class Category implements Serializable{
                 ", img='" + img + '\'' +
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
-                ", food=" + food +
                 '}';
     }
 
     @Override
-    public boolean equals(Object c) {
-        if (this == c) return true;
-        if (!(c instanceof Category that)) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
 
-        return getId().equals(that.getId());
+        Category category = (Category) o;
+
+        return getId().equals(category.getId());
     }
 
     @Override
