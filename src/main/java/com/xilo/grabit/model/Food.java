@@ -22,7 +22,7 @@ public class Food implements Serializable{
     private String description;
     @ManyToOne @JoinColumn @NotNull @NotBlank
     private Category category;
-    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL) @NotNull @NotBlank
     private Set<OrderCollection> orderCollections = new HashSet<>();
 
     public Food() {}

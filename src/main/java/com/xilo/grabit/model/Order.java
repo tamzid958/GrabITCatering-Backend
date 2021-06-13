@@ -27,7 +27,7 @@ public abstract class Order implements Serializable {
     private double subTotal;
     @NotNull @NotBlank
     private String transactionId;
-    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL) @NotNull @NotBlank
     private Set<OrderCollection> orderCollections = new HashSet<>();
 
     public Order(){}
