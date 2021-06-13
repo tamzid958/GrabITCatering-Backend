@@ -27,12 +27,12 @@ public class FoodController {
     }
 
     @PostMapping
-    public Food create(@RequestBody @Valid Food newFood){
+    public Food create(@Valid @RequestBody Food newFood){
         return foodService.create(newFood);
     }
 
     @PutMapping("{id}/")
-    public Food update(@PathVariable Long id, @RequestBody @Valid Food food){
+    public Food update(@PathVariable Long id, @Valid @RequestBody Food food){
         return foodService.update(id, food);
     }
 
