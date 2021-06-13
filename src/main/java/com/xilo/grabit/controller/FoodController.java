@@ -31,12 +31,12 @@ public class FoodController {
         return foodService.create(newFood);
     }
 
-    @PutMapping("{id/}")
+    @PutMapping("{id}/")
     public Food update(@PathVariable Long id, @RequestBody @Valid Food food){
         return foodService.update(id, food);
     }
 
-    @DeleteMapping("{id/}")
+    @DeleteMapping("{id}/")
     public String deleteById(@PathVariable Long id){
         return foodService.deleteById(id);
     }
