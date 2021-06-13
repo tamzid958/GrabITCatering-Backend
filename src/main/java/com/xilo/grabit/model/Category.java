@@ -1,17 +1,21 @@
 package com.xilo.grabit.model;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "categories")
-public abstract class Category implements Serializable{
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+public class Category implements Serializable{
+    @Id @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @NotNull @NotBlank
     private String img;
+    @NotNull @NotBlank
     private String title;
+    @NotNull @NotBlank
     private String subtitle;
     @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
     private Set<Food> foods = new HashSet<>();

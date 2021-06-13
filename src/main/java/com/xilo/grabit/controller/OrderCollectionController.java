@@ -1,6 +1,5 @@
 package com.xilo.grabit.controller;
 import com.xilo.grabit.service.OrderCollectionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderCollectionController {
     private final OrderCollectionService orderCollectionService;
 
-    @Autowired
     public OrderCollectionController(OrderCollectionService orderCollectionService) {
         this.orderCollectionService = orderCollectionService;
     }

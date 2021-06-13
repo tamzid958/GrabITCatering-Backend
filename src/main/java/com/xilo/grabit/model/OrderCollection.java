@@ -1,5 +1,7 @@
 package com.xilo.grabit.model;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -8,18 +10,19 @@ public abstract class OrderCollection implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @NotNull @NotBlank
     private int quantity;
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne @JoinColumn @NotNull @NotBlank
     private Order order;
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne @JoinColumn @NotNull @NotBlank
     private Food food;
 
     public OrderCollection(){}
 
-    public OrderCollection(int quantity) {
+    public OrderCollection(int quantity, Order order, Food food) {
         this.quantity = quantity;
+        this.order = order;
+        this.food = food;
     }
 
     public void setId(Long id) {
@@ -59,6 +62,8 @@ public abstract class OrderCollection implements Serializable{
         return "OrderCollection{" +
                 "id=" + id +
                 ", quantity=" + quantity +
+                ", order=" + order +
+                ", food=" + food +
                 '}';
     }
 

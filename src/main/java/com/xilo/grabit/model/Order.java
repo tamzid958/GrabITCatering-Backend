@@ -1,5 +1,7 @@
 package com.xilo.grabit.model;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,17 +9,23 @@ import java.util.Set;
 @Entity
 @Table(name = "orders")
 public abstract class Order implements Serializable {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @NotNull @NotBlank
     private String firstName;
+    @NotNull @NotBlank
     private String lastName;
     private String companyName;
+    @NotNull @NotBlank
     private String streetAddress;
+    @NotNull @NotBlank
     private String phone;
     private String notes;
+    @NotNull @NotBlank
     private String paymentMethod;
+    @NotNull @NotBlank
     private double subTotal;
+    @NotNull @NotBlank
     private String transactionId;
     @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
     private Set<OrderCollection> orderCollections = new HashSet<>();

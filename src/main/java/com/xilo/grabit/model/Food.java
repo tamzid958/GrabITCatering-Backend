@@ -1,36 +1,39 @@
 package com.xilo.grabit.model;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "foods")
-public abstract class Food implements Serializable{
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+public class Food implements Serializable{
+    @Id @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @NotNull @NotBlank
     private String img;
+    @NotNull @NotBlank
     private String title;
+    @NotNull @NotBlank
     private double price;
-    private int avgReview;
+    @NotNull @NotBlank
     private boolean available;
     private String description;
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne @JoinColumn @NotNull @NotBlank
     private Category category;
     @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
     private Set<OrderCollection> orderCollections = new HashSet<>();
 
-    public Food(){}
+    public Food() {}
 
-    public Food(String img, String title, double price, int avgReview, boolean available, String description) {
+    public Food(String img, String title, double price, boolean available, String description, Category category) {
         this.img = img;
         this.title = title;
         this.price = price;
-        this.avgReview = avgReview;
         this.available = available;
         this.description = description;
+        this.category = category;
     }
 
     public void setId(Long id) {
@@ -63,14 +66,6 @@ public abstract class Food implements Serializable{
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getAvgReview() {
-        return avgReview;
-    }
-
-    public void setAvgReview(int avgReview) {
-        this.avgReview = avgReview;
     }
 
     public boolean isAvailable() {
@@ -112,9 +107,9 @@ public abstract class Food implements Serializable{
                 ", img='" + img + '\'' +
                 ", title='" + title + '\'' +
                 ", price=" + price +
-                ", avgReview=" + avgReview +
                 ", available=" + available +
                 ", description='" + description + '\'' +
+                ", category=" + category +
                 '}';
     }
 

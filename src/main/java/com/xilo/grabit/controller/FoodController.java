@@ -1,10 +1,10 @@
 package com.xilo.grabit.controller;
+
 import com.xilo.grabit.model.Food;
 import com.xilo.grabit.service.FoodService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -12,13 +12,32 @@ import java.util.List;
 public class FoodController {
     private final FoodService foodService;
 
-    @Autowired
     public FoodController(FoodService foodService) {
         this.foodService = foodService;
     }
 
     @GetMapping
-    public List<Food> getAllFoods(){
-        return foodService.getAllFoods();
+    public List<Food> findAll(){
+        return foodService.findAll();
+    }
+
+    @GetMapping("{id}/")
+    public Food findById(@PathVariable Long id) {
+        return foodService.findById(id);
+    }
+
+    @PostMapping
+    public Food create(@RequestBody @Valid Food newFood){
+        return foodService.create(newFood);
+    }
+
+    @PutMapping("{id/}")
+    public Food update(@PathVariable Long id, @RequestBody @Valid Food food){
+        return foodService.update(id, food);
+    }
+
+    @DeleteMapping("{id/}")
+    public String deleteById(@PathVariable Long id){
+        return foodService.deleteById(id);
     }
 }
