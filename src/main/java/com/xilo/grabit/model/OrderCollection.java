@@ -7,8 +7,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "order_collections")
 public class OrderCollection implements Serializable{
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @NotNull @NotBlank
     private int quantity;
