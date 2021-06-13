@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "order_collections")
-public abstract class OrderCollection implements Serializable{
+public class OrderCollection implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;

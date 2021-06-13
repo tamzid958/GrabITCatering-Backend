@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "orders")
-public abstract class Order implements Serializable {
+public class Order implements Serializable {
     @Id @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @NotNull @NotBlank
