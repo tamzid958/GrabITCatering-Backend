@@ -28,15 +28,15 @@ public class FoodService {
     }
 
     public Food create(Food newFood) {
-        Food food = new Food(
-                newFood.getImg(),
-                newFood.getTitle(),
-                newFood.getPrice(),
-                true,
-                newFood.getDescription(),
-                newFood.getCategory());
-        foodRepository.save(food);
-        return food;
+       return categoryRepository.findById(newFood.getCategory().getId()).map(
+           category -> foodRepository.save(new Food(
+               newFood.getImg(),
+               newFood.getTitle(),
+               newFood.getPrice(),
+               true,
+               newFood.getDescription(),
+               category))
+       ).orElse(null);
     }
 
     public Food update(Long id, Food updatedFood) {
@@ -49,8 +49,7 @@ public class FoodService {
                 food.setAvailable(updatedFood.isAvailable());
                 food.setDescription(updatedFood.getDescription());
                 food.setCategory(category);
-                foodRepository.save(food);
-                return food;
+                return foodRepository.save(food);
             })).orElse(null);
     }
 

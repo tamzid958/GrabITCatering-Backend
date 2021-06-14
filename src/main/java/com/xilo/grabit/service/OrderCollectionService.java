@@ -32,15 +32,11 @@ public class OrderCollectionService {
         return foodRepository.findById(newOrderCollection.getFood().getId()).flatMap(
                 food ->
                 orderRepository.findById(newOrderCollection.getOrder().getId()).map(
-                    order -> {
-                        OrderCollection orderCollection = new OrderCollection(
-                                newOrderCollection.getQuantity(),
-                                order,
-                                food
-                        );
-                        orderCollectionRepository.save(orderCollection);
-                        return orderCollection;
-                    }
+                    order -> orderCollectionRepository.save(new OrderCollection(
+                            newOrderCollection.getQuantity(),
+                            order,
+                            food
+                    ))
                 )).orElse(null);
 
     }
@@ -53,8 +49,7 @@ public class OrderCollectionService {
                          orderCollection.setQuantity(updatedOrderCollection.getQuantity());
                          orderCollection.setOrder(order);
                          orderCollection.setFood(food);
-                         orderCollectionRepository.save(orderCollection);
-                         return orderCollection;
+                         return orderCollectionRepository.save(orderCollection);
                      }
                 ))).orElse(null);
     }

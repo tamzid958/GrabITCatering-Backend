@@ -23,7 +23,7 @@ public class OrderService {
     }
 
     public Order create(Order newOrder) {
-        Order order = new Order(
+        return orderRepository.save(new Order(
                 newOrder.getFirstName(),
                 newOrder.getLastName(),
                 newOrder.getCompanyName(),
@@ -33,9 +33,7 @@ public class OrderService {
                 newOrder.getPaymentMethod(),
                 newOrder.getSubTotal(),
                 newOrder.getTransactionId()
-        );
-        orderRepository.save(order);
-        return order;
+        ));
     }
 
     public Order update(Long id, Order updatedOrder) {
@@ -49,8 +47,7 @@ public class OrderService {
                 order.setNotes(updatedOrder.getNotes());
                 order.setPaymentMethod(updatedOrder.getPaymentMethod());
                 order.setSubTotal(updatedOrder.getSubTotal());
-                orderRepository.save(order);
-                return order;
+                return orderRepository.save(order);
             }
         ).orElse(null);
     }

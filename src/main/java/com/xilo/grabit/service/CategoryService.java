@@ -25,13 +25,11 @@ public class CategoryService {
     }
 
     public Category create(Category newCategory) {
-        Category category = new Category(
-          newCategory.getImg(),
-          newCategory.getTitle(),
-          newCategory.getSubtitle()
-        );
-        categoryRepository.save(category);
-        return category;
+        return categoryRepository.save(new Category(
+                newCategory.getImg(),
+                newCategory.getTitle(),
+                newCategory.getSubtitle()
+        ));
     }
 
     public Category update(Long id, Category updatedCategory) {
@@ -40,8 +38,7 @@ public class CategoryService {
                 category.setImg(updatedCategory.getImg());
                 category.setTitle(updatedCategory.getTitle());
                 category.setSubtitle(updatedCategory.getSubtitle());
-                categoryRepository.save(category);
-                return category;
+                return categoryRepository.save(category);
             }
         ).orElse(null);
     }
