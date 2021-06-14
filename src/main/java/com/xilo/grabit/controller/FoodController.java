@@ -26,12 +26,12 @@ public class FoodController {
         return foodService.findById(id);
     }
 
-    @PostMapping
+    @ResponseBody @PostMapping
     public Food create(@Valid @RequestBody Food newFood){
         return foodService.create(newFood);
     }
 
-    @PutMapping("{id}/")
+    @ResponseBody @PutMapping("{id}/")
     public Food update(@PathVariable Long id, @Valid @RequestBody Food updatedFood){
         return foodService.update(id, updatedFood);
     }
