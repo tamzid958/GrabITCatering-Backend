@@ -41,17 +41,17 @@ public class FoodService {
 
     public Food update(Long id, Food updatedFood) {
         return foodRepository.findById(id).flatMap(
-                food -> categoryRepository.findById(updatedFood.getCategory().getId()).map(
-                category -> {
-                    food.setImg(updatedFood.getImg());
-                    food.setTitle(updatedFood.getTitle());
-                    food.setPrice(updatedFood.getPrice());
-                    food.setAvailable(updatedFood.isAvailable());
-                    food.setDescription(updatedFood.getDescription());
-                    food.setCategory(category);
-                    foodRepository.save(food);
-                    return food;
-                })).orElse(null);
+            food -> categoryRepository.findById(updatedFood.getCategory().getId()).map(
+            category -> {
+                food.setImg(updatedFood.getImg());
+                food.setTitle(updatedFood.getTitle());
+                food.setPrice(updatedFood.getPrice());
+                food.setAvailable(updatedFood.isAvailable());
+                food.setDescription(updatedFood.getDescription());
+                food.setCategory(category);
+                foodRepository.save(food);
+                return food;
+            })).orElse(null);
     }
 
     public String deleteById(Long id) {
