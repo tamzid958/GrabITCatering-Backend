@@ -1,5 +1,7 @@
 package com.xilo.grabit.model;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -20,9 +22,9 @@ public class Food implements Serializable{
     @NotNull @NotBlank
     private boolean available;
     private String description;
-    @ManyToOne @JoinColumn @NotNull @NotBlank
+    @ManyToOne @JoinColumn @NotNull @NotBlank @Valid
     private Category category;
-    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL) @NotNull @NotBlank
+    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
     private Set<OrderCollection> orderCollections = new HashSet<>();
 
     public Food() {}

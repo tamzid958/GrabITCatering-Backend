@@ -2,11 +2,13 @@ package com.xilo.grabit.controller;
 
 import com.xilo.grabit.model.Category;
 import com.xilo.grabit.service.CategoryService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@Transactional
 @RestController
 @RequestMapping("api/v1/categories/")
 public class CategoryController {

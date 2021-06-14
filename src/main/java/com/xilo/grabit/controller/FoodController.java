@@ -2,11 +2,13 @@ package com.xilo.grabit.controller;
 
 import com.xilo.grabit.model.Food;
 import com.xilo.grabit.service.FoodService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@Transactional
 @RestController
 @RequestMapping("api/v1/foods/")
 public class FoodController {

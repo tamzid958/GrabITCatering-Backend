@@ -1,5 +1,7 @@
 package com.xilo.grabit.model;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -11,9 +13,9 @@ public class OrderCollection implements Serializable{
     private Long id;
     @NotNull @NotBlank
     private int quantity;
-    @ManyToOne @JoinColumn @NotNull @NotBlank
+    @ManyToOne @JoinColumn @NotNull @NotBlank @Valid
     private Order order;
-    @ManyToOne @JoinColumn @NotNull @NotBlank
+    @ManyToOne @JoinColumn @NotNull @NotBlank @Valid
     private Food food;
 
     public OrderCollection(){}

@@ -2,11 +2,13 @@ package com.xilo.grabit.controller;
 
 import com.xilo.grabit.model.OrderCollection;
 import com.xilo.grabit.service.OrderCollectionService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@Transactional
 @RestController
 @RequestMapping("api/v1/order_collections/")
 public class OrderCollectionController {

@@ -17,7 +17,7 @@ public class Category implements Serializable{
     private String title;
     @NotNull @NotBlank
     private String subtitle;
-    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL) @NotNull @NotBlank
+    @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
     private Set<Food> foods = new HashSet<>();
 
     public Category(){}
